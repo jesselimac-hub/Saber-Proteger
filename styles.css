@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    width: 70vw;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 600px;
+    gap: 10%;
+    z-index: 10;
+
+    & img {
+        width: 250px;
+    }
+
+    & nav {
+        & ul {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+        }
+
+        /* Estiliza o elemento interno (a) para parecer um botão */
+        li button,
+        li a {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #f6f6f600;
+        }
+    }
+}
+
+section {
+    background-image: radial-gradient(#000000, #02230f);
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    /* Garante que a seção fique atrás do header */
+
+    & .list {
+        width: 70vw;
+        height: 100vh;
+        /* Corrigido de '100' para '100vh' para ocupar a tela */
+        margin: auto;
+        position: relative;
+
+        & .item {
+            position: absolute;
+            inset: 0;
+
+
+            & .Cap-img,
+            & .luva-img,
+            & .botina-img {
+                /* Agrupamento de estilos para as imagens de produto */
+                position: absolute;
+                top: 3%;
+                width: 65%;
+            }
+
+            & .Cap-img {
+                transform: translateY(10%);
+
+                & img {
+                    width: 100%;
+                    transform: rotate(-20deg);
+                }
+            }
+
+            & .luva-img,
+            & .botina-img {
+                transform: translateY(20%);
+            }
+
+            /* --- INÍCIO DA CORREÇÃO CRÍTICA DO .content --- */
+            & .content {
+                position: absolute;
+                right: 150px;
+                top: 0%;
+                transform: translateY(-50%);
+                /* Centraliza verticalmente */
+                width: 50%;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: end;
+                gap: 60px;
+
+                & .EPI-information {
+                    font-weight: bolder;
+                }
+
+                & h2 {
+                    font-size: 3em;
+                    line-height: 1em;
+                    font-family: "League Gothic", sans-serif;
+                }
+
+                & .description {
+                    color: #d9d9d9;
+                    font-size: 12px;
+                    text-align: right;
+                    max-width: 400px;
+                }
+
+                & .information {
+                    /* Estiliza o <a> como botão */
+                    display: inline-block;
+                    /* ESSENCIAL para <a> ter width/height */
+                    text-decoration: none;
+                    /* Remove sublinhado padrão do link */
+                    text-align: center;
+                    /* Centraliza o texto do link */
+                    padding: 5px 15px;
+                    line-height: 25px;
+                    border-radius: 90px;
+                    height: auto;
+                    width: 130px;
+                    text-transform: uppercase;
+                    border: 2.5px solid #791fd3;
+                    background-color: #beff1b;
+                    color: #000;
+                    cursor: pointer;
+                    font-weight: 500;
+                    font-family: "League Gothic", sans-serif;
+
+                    /* Z-INDEX é útil em elementos fixos */
+                    position: relative;
+                    z-index: 10;
+                    transition: background-color 0.3s, transform 0.1s;
+                }
+
+                & .information:hover {
+                    background-color: #0de1e8;
+                    transform: scale(1.05);
+                }
+            }
+
+            /* --- FIM DA CORREÇÃO CRÍTICA DO .content --- */
+        }
+
+        &::before {
+            content: '';
+            position: fixed;
+            height: 200px;
+            width: 70%;
+            top: 50%;
+            border-top: 1px solid #fff;
+            pointer-events: none;
+        }
+    }
+
+    .arrows {
+        width: 70vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -25px);
+        display: flex;
+        justify-content: space-between;
+
+        & button:nth-child(1) & img {
+            transform: scaleX(-1);
+            /* Corrigido de scale(-1) para scaleX(-1) para inverter horizontalmente */
+        }
+
+        & #prev img {
+            /* Se a imagem original aponta para a direita, isso a vira para a esquerda */
+            transform: scaleX(-1);
+        }
+
+        & button {
+            top: 60%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+
+
+            & img {
+                width: 35px;
+                margin-top: 0.5px;
+                cursor: pointer;
+            }
+
+            &:hover {
+                background-color: #beff1b;
+            }
+        }
+    }
+
+    .indicators {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 200px;
+        width: 90vw;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        gap: 15px;
+
+        & .number {
+            font-size: 3em;
+            font-family: "League Gothic", sans-serif;
+        }
+
+        & ul {
+            display: flex;
+            gap: 10px;
+
+            & li {
+                width: 50px;
+                height: 5px;
+                background-color: #beff1b;
+                border-radius: 5px;
+                transition: 0.5s;
+            }
+
+            & .active {
+                background-color: #fff;
+            }
+        }
+    }
+
+}
+
+
+section {
+    & .list {
+        & .item {
+            transform: translateX(calc(100vw * var(--calculation)));
+            transition: 0.5s;
+            opacity: 0;
+            pointer-events: none;
+
+            & .Cap-img img,
+            & .luva-img img,
+            & .botina-img img {
+                transform: rotate(0);
+                transition: 0.5s;
+                transition-delay: 0.3s;
+            }
+
+            /* Removido o seletor problemático Cap-img::before para evitar erros */
+
+            & .content {
+
+                & .EPI-information,
+                h2,
+                .description,
+                .information {
+                    position: relative;
+                    top: 390px;
+                    left: 10px;
+                    transition: 0.4s;
+                    transition-delay: 0.5s;
+                    opacity: 0;
+                    pointer-events: none;
+                }
+
+                & h2 {
+                    transition-delay: 0.5s;
+                }
+
+                & .description {
+                    transition-delay: 0.7s;
+                }
+
+                & .information {
+                    transition-delay: 0.9s;
+                }
+            }
+        }
+
+        & .active {
+            transform: translateX(0);
+            transition: 0.5s;
+            opacity: 1;
+            pointer-events: auto;
+
+            & .Cap-img img,
+            & .luva-img img,
+            & .botina-img img {
+                transform: rotate(-10deg);
+            }
+
+            & .content {
+
+                & .EPI-information,
+                h2,
+                .description,
+                .information {
+                    /* Corrigido: transform deve ser zerado para animar */
+                    transform: translateX(0);
+                    opacity: 1;
+                    pointer-events: auto;
+                }
+            }
+        }
+    }
+}

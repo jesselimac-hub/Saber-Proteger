@@ -1,0 +1,121 @@
+/* REGRAS GLOBAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Poppins", sans-serif;
+}
+
+/* REGRAS DO CORPO */
+body {
+    background-image: radial-gradient(#000000, #02230f);
+    height: 100vh;
+    position: relative;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+/* REGRAS DO CABEÇALHO */
+header {
+    /* Mantenha o header fixo no topo */
+    position: fixed;
+    width: 100%;
+    /* Ajustado para ocupar toda a largura para centralização correta */
+    left: 13.8%;
+    /* Removido o transform: translateX() e display: grid para simplificar,
+    mas se precisar, mantenha as regras originais de posicionamento */
+
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 600px;
+    gap: 10%;
+    z-index: 2;
+}
+
+/* Estilo para todas as tags <img> DENTRO do header que não são a .Eu */
+header img {
+    width: 250px;
+    /* Aqui estavam as regras de movimento da imagem, que foram passadas para a classe .Eu */
+}
+
+/* REGRAS DE NAVEGAÇÃO */
+header nav ul {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+}
+
+li button,
+li a {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #0a060600;
+}
+
+--- ## 🖼️ Posicionamento da Imagem .Eu (Canto Inferior Direito) Este bloco é o mais importante e garante o posicionamento e a capacidade de arrastar com o JavaScript. ```css
+
+/* SELETOR VÁLIDO: Para a imagem com a classe "Eu" dentro de <section> */
+section .Eu {
+    /* Essencial para movimento e posicionamento por coordenadas */
+    position: fixed;
+
+    /* POSICIONAMENTO: Define o canto inferior direito */
+    bottom: 0;
+    /* 0 pixels de distância da parte inferior do body */
+    right: 0;
+    /* 0 pixels de distância da parte direita do body */
+
+    /* Configuração de Posição Inicial e Aparência */
+    width: 250px;
+    /* Tamanho ajustado para ser visível */
+    height: auto;
+    transform: rotate(0deg);
+    /* Removido o transform: translateX, mantido apenas o rotate se desejar */
+    cursor: grab;
+    /* Indica que é arrastável */
+}
+
+/* --- ESTILOS PARA BOTÕES DE REDES SOCIAIS --- */
+
+/* Centraliza o container dos botões no centro da tela */
+.social-links {
+    /* Define o container para posição absoluta */
+    position: absolute;
+    
+    /* Centraliza o container no centro da tela */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Organiza os botões em linha */
+    display: flex;
+    gap: 20px; /* Espaçamento entre os botões */
+    z-index: 1; /* Garante que fiquem abaixo do header fixo */
+}
+
+/* Estilo Básico dos Botões (aparência "botina" escura) */
+.social-btn {
+    /* Faz o link parecer um botão */
+    display: inline-block;
+    padding: 12px 25px;
+    
+    /* Estilo de cor do site */
+    background-color: #071f36; /* Cor escura do seu gradiente */
+    color: #ffffff;
+    border: 1px solid #02230f;
+    border-radius: 8px;
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+    
+    /* Ajustes na fonte */
+    font-size: 1.1em;
+    text-transform: uppercase;
+}
+
+/* Efeito Hover (ao passar o mouse) */
+.social-btn:hover {
+    background-color: #22372b; /* Fica mais escuro ao passar o mouse */
+    transform: translateY(-3px); /* Efeito de elevação sutil */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
